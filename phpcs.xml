@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8" ?>
+
+<ruleset name="Stryber skeleton">
+    <!--
+          The name attribute of the ruleset tag is displayed
+          when running PHP_CodeSniffer with the -v command line
+          argument. The description tag below is not displayed anywhere
+          except in this file, so it can contain information for
+          developers who may change this file in the future.
+      -->
+    <description>Stryber skeleton Coding Standards</description>
+
+    <!-- Show sniff codes in all reports -->
+    <arg value="s"/>
+
+    <!-- Use PSR-2 as a base -->
+    <rule ref="PSR2"/>
+
+    <!--
+        If no files or directories are specified on the command line
+        your custom standard can specify what files should be checked
+        instead.
+        Note that specifying any file or directory path
+        on the command line will ignore all file tags.
+    -->
+    <file>app</file>
+    <file>routes</file>
+
+    <arg name="basepath" value="."/>
+
+    <!--This sniff checks the cyclomatic complexity for functions by counting the different paths the function includes.-->
+    <rule ref="Generic.Metrics.CyclomaticComplexity">
+        <properties>
+            <property name="complexity" value="5" />
+            <property name="absoluteComplexity" value="30" />
+        </properties>
+    </rule>
+
+    <!--This sniff checks how many level deep that code is nested within a function.-->
+    <rule ref="Generic.Metrics.NestingLevel">
+        <properties>
+            <property name="nestingLevel" value="8"/>
+            <property name="absoluteNestingLevel" value="12"/>
+        </properties>
+    </rule>
+
+</ruleset>
