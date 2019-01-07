@@ -2,11 +2,11 @@
 
 namespace App\Http\Services;
 
-use App\Http\Services\Contracts\UserContract;
+use App\Http\Services\Contracts\UserServiceContract;
 use App\Repositories\Contracts\UserRepositoryContract;
 use Illuminate\Database\Eloquent\Model;
 
-class UserService implements UserContract
+class UserService implements UserServiceContract
 {
     /** @var UserRepositoryContract */
     protected $userRepository;
@@ -19,7 +19,7 @@ class UserService implements UserContract
     /**
      * {@inheritdoc}
      */
-    public function create(array $data): Model
+    public function store(array $data): Model
     {
         return $this->userRepository->create($data);
     }

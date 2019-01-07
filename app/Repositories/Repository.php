@@ -6,6 +6,7 @@ use App\Exceptions\RepositoryException;
 use App\Models\Company;
 use App\Models\Country;
 use App\Repositories\Contracts\RepositoryContract;
+use Carbon\Carbon;
 use Illuminate\Container\Container as App;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Collection;
@@ -31,7 +32,7 @@ abstract class Repository implements RepositoryContract
     /**
      * Specify Model class name
      *
-     * @return mixed
+     * @return string
      */
     abstract protected function model();
 
@@ -81,8 +82,11 @@ abstract class Repository implements RepositoryContract
      */
     public function whereFirst(array $fields)
     {
+        dd($this->model->where('created_at', 'LIKE', Carbon::now()->toDateString() . '%')->count());
         return $this->model->where($fields)->first();
     }
+
+
 
     /**
      * @param array $data
@@ -102,10 +106,10 @@ abstract class Repository implements RepositoryContract
      */
     public function setSearchSelector(string $string, array $data): Builder
     {
-        if (!empty($data)) {
-            return $this->model->where($data)->where('company_name', "LIKE", "%$string%");
-        }
-        return $this->model->where('company_name', "LIKE", "%$string%");
+//        if (!empty($data)) {
+//            return $this->model->where($data)->where('company_name', 'LIKE', '%{$string}%');
+//        }
+//        return $this->model->where('company_name', 'LIKE', "%$string%");
     }
 
     /**

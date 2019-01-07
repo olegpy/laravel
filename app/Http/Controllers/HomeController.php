@@ -2,18 +2,19 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Services\Contracts\UserServiceContract;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
 {
-    /**
-     * Create a new controller instance.
-     *
-     * @return void
-     */
+//    /** @var UserServiceContract */
+//    protected $userContract;
+
     public function __construct()
     {
         $this->middleware('auth');
+
+//        $this->userContract = $userServiceContract;
     }
 
     /**
@@ -23,6 +24,7 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('home');
+//        $users = $this->userContract->list();
+//        return view('index')->with(['proposals' => $proposals]);
     }
 }

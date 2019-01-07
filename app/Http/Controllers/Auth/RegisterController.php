@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers\Auth;
 
-use App\Http\Services\Contracts\UserContract;
+use App\Http\Services\Contracts\UserServiceContract;
 use App\Http\Controllers\Controller;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Hash;
@@ -31,13 +31,13 @@ class RegisterController extends Controller
      */
     protected $redirectTo = '/';
 
-    /** @var UserContract */
+    /** @var UserServiceContract */
     protected $userContract;
 
     /**
-     * @param UserContract $userContract
+     * @param UserServiceContract $userContract
      */
-    public function __construct(UserContract $userContract)
+    public function __construct(UserServiceContract $userContract)
     {
         $this->middleware('guest');
 
@@ -71,7 +71,7 @@ class RegisterController extends Controller
      */
     protected function create(array $data): Model
     {
-        return $this->userService->create([
+        return $this->userContract->create([
             'name' => $data['name'],
             'email' => $data['email'],
             'password' => Hash::make($data['password']),

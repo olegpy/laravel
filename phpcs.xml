@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8" ?>
 
-<ruleset name="Stryber skeleton">
+<ruleset name="laravel psr">
     <!--
           The name attribute of the ruleset tag is displayed
           when running PHP_CodeSniffer with the -v command line
@@ -8,7 +8,7 @@
           except in this file, so it can contain information for
           developers who may change this file in the future.
       -->
-    <description>Stryber skeleton Coding Standards</description>
+    <description>Laravel Coding Standards</description>
 
     <!-- Show sniff codes in all reports -->
     <arg value="s"/>

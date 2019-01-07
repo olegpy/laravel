@@ -19,6 +19,7 @@ class CreateProposalsTable extends Migration
             $table->string('title', 25);
             $table->text('message');
             $table->string('attached_file')->nullable();
+            $table->boolean('readed')->default(false);
             $table->timestamps();
 
             $table->foreign('user_id', 'proposal_user_index')->references('id')->on('users');

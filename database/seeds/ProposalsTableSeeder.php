@@ -20,11 +20,10 @@ class ProposalsTableSeeder extends Seeder
         DB::statement("SET foreign_key_checks=1");
 
         $proposals = [];
-        $rr = [];
 
         $users = \App\Models\User::where('is_admin', false)->get();
-//dd($users);
-        $now = \Carbon\Carbon::now();
+
+        $now = \Carbon\Carbon::yesterday();
         foreach ($users as $user){
             for ($i = 0; $i < self::COUNT; $i++){
                 $proposals[] = [

@@ -7,6 +7,10 @@ use App\Repositories\Contracts\UserRepositoryContract;
 
 class UserRepository extends Repository implements UserRepositoryContract
 {
+
+    /**
+     * {@inheritdoc}
+     */
     public function model()
     {
         return User::class;

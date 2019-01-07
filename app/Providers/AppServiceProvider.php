@@ -2,9 +2,11 @@
 
 namespace App\Providers;
 
-use App\Http\Services\Contracts\ProposalContract;
-use App\Http\Services\Contracts\UserContract;
+use App\Http\Services\Contracts\ProposalServiceContract;
+use App\Http\Services\Contracts\StorageServiceContract;
+use App\Http\Services\Contracts\UserServiceContract;
 use App\Http\Services\ProposalService;
+use App\Http\Services\StorageService;
 use App\Http\Services\UserService;
 use App\Repositories\Contracts\ProposalRepositoryContract;
 use App\Repositories\Contracts\UserRepositoryContract;
@@ -39,7 +41,9 @@ class AppServiceProvider extends ServiceProvider
         /**
          * List Binded contracts interfaces to the services
          */
-        $this->app->bind(UserContract::class, UserService::class);
-        $this->app->bind(ProposalContract::class, ProposalService::class);
+        $this->app->bind(UserServiceContract::class, UserService::class);
+        $this->app->bind(ProposalServiceContract::class, ProposalService::class);
+
+        $this->app->bind(StorageServiceContract::class, StorageService::class);
     }
 }

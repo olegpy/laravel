@@ -4,12 +4,12 @@ namespace App\Http\Services\Contracts;
 
 use Illuminate\Database\Eloquent\Model;
 
-interface Contract
+interface ServiceContract
 {
     /**
      * @param array $data
      *
-     * @return Model
+     * @return array
      */
-    public function create(array $data): Model;
+    public function store(array $data): array;
 }
