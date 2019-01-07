@@ -3,9 +3,14 @@
 @section('content')
 <div class="container">
 
-    {{--@if(auth()->user()->is_admin)--}}
+    @if(auth()->user()->is_admin)
         <div class="row justify-content-center">
             <div class="col-md-8">
+                @if(session()->has('message'))
+                    <div class="alert alert-success">
+                        {{ session()->get('message') }}
+                    </div>
+                @endif
                 @if(count($proposals) > 0)
                     @foreach ($proposals as $proposal)
                         <div class="card mb-2">
@@ -13,25 +18,21 @@
                                 <h5 class="card-title">Created by {{$proposal->user->name}} at {{$proposal->created_at}}</h5>
                                 <h6 class="card-subtitle mb-2 text-muted">Email {{$proposal->user->email}}</h6>
 
-                                @if (count($errors) > 0)
-                                    <div class="error">
-                                        <ul>
-                                            @foreach ($errors->all() as $error)
-                                                <li>{{ $error }}</li>
-                                            @endforeach
-                                        </ul>
-                                    </div>
+                                @if($errors->has('title'))
+                                    <small id="emailHelp" class="form-text text-danger">{{ $errors->first('title')}}</small>
                                 @endif
 
-                                <form action="{{ route('proposals.update', [$proposal->id]) }}" method="post">
-                                    {{ method_field('PUT') }}
-                                    {{ csrf_field() }}
-                                    <div class="form-group form-check">
-                                        <input type="checkbox" name="readed" class="form-check-input" id="checkbox">
-                                        <label class="form-check-label" for="checkbox">Check me out</label>
-                                    </div>
-                                    <button type="submit" class="btn btn-primary">Submit</button>
-                                </form>
+                                @if(!$proposal->readed)
+                                    <form action="{{ route('proposals.update', [$proposal->id]) }}" method="post">
+                                        {{ method_field('PUT') }}
+                                        {{ csrf_field() }}
+                                        <div class="form-group form-check">
+                                            <input type="checkbox" name="readed" class="form-check-input" id="checkbox" value="1">
+                                            <label class="form-check-label" for="checkbox">Check me out</label>
+                                        </div>
+                                        <button type="submit" class="btn btn-primary">Submit</button>
+                                    </form>
+                                @endif
                             </div>
                             <div class="card-body">
                                 <h5 class="card-title">{{$proposal->title}}</h5>
@@ -42,10 +43,12 @@
                             </div>
                         </div>
                     @endforeach
+
+                    {{ $proposals->links() }}
                 @endif
             </div>
         </div>
-    {{--@else--}}
+    @else
         <div class="row justify-content-center">
             <div class="col-md-8">
 
@@ -81,7 +84,7 @@
                 </form>
             </div>
         </div>
-    {{--@endif--}}
+    @endif
 
 </div>
 @endsection

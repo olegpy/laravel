@@ -53,8 +53,6 @@ class RegisterController extends Controller
      */
     protected function validator(array $data): \Illuminate\Contracts\Validation\Validator
     {
-        //TODO add when we creating user to email
-        //TODO add custom validator
         return Validator::make($data, [
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
@@ -71,7 +69,7 @@ class RegisterController extends Controller
      */
     protected function create(array $data): Model
     {
-        return $this->userContract->create([
+        return $this->userContract->store([
             'name' => $data['name'],
             'email' => $data['email'],
             'password' => Hash::make($data['password']),

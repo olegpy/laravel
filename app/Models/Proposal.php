@@ -4,9 +4,14 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Notifications\Notifiable;
 
 class Proposal extends Model
 {
+    const PAGINATE_PAGE_COUNT=5;
+
+    use Notifiable;
+
     const PROPOSAL_READED = 1;
     const PROPOSAL_NOT_READED = 0;
 
@@ -32,4 +37,15 @@ class Proposal extends Model
     {
         return $this->belongsTo(User::class);
     }
+
+//    /**
+//     * Route notifications for the mail channel.
+//     *
+//     * @param  \Illuminate\Notifications\Notification  $notification
+//     * @return string
+//     */
+//    public function routeNotificationForMail($notification): string
+//    {
+//        return $notification->emailAdmin;
+//    }
 }

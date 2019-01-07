@@ -7,8 +7,8 @@ use App\Http\Requests\Proposal\ProposalUpdateReadedRequest;
 use App\Http\Services\Contracts\ProposalServiceContract;
 use App\Models\Proposal;
 use Illuminate\Http\RedirectResponse;
-use Illuminate\Support\Facades\Storage;
 use Illuminate\View\View;
+use Symfony\Component\HttpFoundation\StreamedResponse;
 
 class ProposalController extends Controller
 {
@@ -60,15 +60,23 @@ class ProposalController extends Controller
     /**
      * @param Proposal $proposal
      *
-     * @return \Symfony\Component\HttpFoundation\StreamedResponse
+     * @return StreamedResponse
      */
-    public function download(Proposal $proposal)
+    public function download(Proposal $proposal): StreamedResponse
     {
         return $this->proposalContract->download($proposal->attached_file);
     }
 
-    public function update(ProposalUpdateReadedRequest $request, Proposal $proposal)
+    /**
+     * @param ProposalUpdateReadedRequest $request
+     * @param Proposal $proposal
+     *
+     * @return RedirectResponse
+     */
+    public function update(ProposalUpdateReadedRequest $request, Proposal $proposal): RedirectResponse
     {
-        dd('at the update');
+        $this->proposalContract->update($request->validated(), $proposal);
+
+        return redirect()->back()->with(['message' => __('messages.results.update.message', ['name' => $proposal->user->name])]);
     }
 }

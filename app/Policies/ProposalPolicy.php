@@ -21,18 +21,17 @@ class ProposalPolicy
         return !$user->is_admin;
     }
 
-//    /**
-//     * Determine whether the user can update the policy.
-//     *
-//     * @param  \App\Models\User  $user
-//     * @param  \App\Policy  $policy
-//     * @return mixed
-//     */
-//    public function update(User $user, Policy $policy)
-//    {
-//        //
-//    }
-//
+    /**
+     * @param User $user
+     * @param Proposal $proposal
+     *
+     * @return bool
+     */
+    public function update(User $user, Proposal $proposal): bool
+    {
+        return $user->is_admin;
+    }
+
     /**
      * @param User $user
      * @param Proposal $proposal

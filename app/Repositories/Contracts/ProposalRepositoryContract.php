@@ -2,6 +2,8 @@
 
 namespace App\Repositories\Contracts;
 
+use Illuminate\Contracts\Pagination\LengthAwarePaginator;
+
 interface ProposalRepositoryContract extends RepositoryContract
 {
     /**
@@ -11,4 +13,12 @@ interface ProposalRepositoryContract extends RepositoryContract
      * @return int
      */
     public function countByDate(int $userId, string $date): int;
+
+    /**
+     * get list of model with relations
+     *
+     * @param array $data
+     * @return LengthAwarePaginator
+     */
+    public function list(array $data): LengthAwarePaginator;
 }

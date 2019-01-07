@@ -21,6 +21,9 @@ return [
         "error" => [
             'status' => 'danger',
             'message' => 'Sorry, you can\'t create :type today . Please create tomorrow',
+        ],
+        'update' => [
+            'message' => 'You updated successfully proposal with name :name',
         ]
 
     ]
