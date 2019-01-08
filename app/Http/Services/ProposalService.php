@@ -10,9 +10,6 @@ use App\Repositories\Contracts\ProposalRepositoryContract;
 use App\Repositories\Contracts\UserRepositoryContract;
 use Carbon\Carbon;
 use Illuminate\Contracts\Pagination\LengthAwarePaginator;
-use Illuminate\Database\Eloquent\Collection;
-use Illuminate\Database\Eloquent\Model;
-use Illuminate\Support\Facades\Storage;
 use Symfony\Component\HttpFoundation\StreamedResponse;
 
 class ProposalService implements ProposalServiceContract
@@ -23,6 +20,10 @@ class ProposalService implements ProposalServiceContract
     /** @var StorageServiceContract */
     protected $storageService;
 
+    /**
+     * @param ProposalRepositoryContract $proposalRepository
+     * @param StorageServiceContract $storageService
+     */
     public function __construct(ProposalRepositoryContract $proposalRepository, StorageServiceContract $storageService)
     {
         $this->proposalRepository = $proposalRepository;
