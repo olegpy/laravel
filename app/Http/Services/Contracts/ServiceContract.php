@@ -2,8 +2,6 @@
 
 namespace App\Http\Services\Contracts;
 
-use Illuminate\Database\Eloquent\Model;
-
 interface ServiceContract
 {
     /**

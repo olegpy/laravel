@@ -29,6 +29,9 @@
                                         <div class="form-group form-check">
                                             <input type="checkbox" name="readed" class="form-check-input" id="checkbox" value="1">
                                             <label class="form-check-label" for="checkbox">Check me out</label>
+                                            @if ($errors->has('readed'))
+                                                <small id="emailHelp" class="form-text text-danger">{{ $errors->first('readed')}}</small>
+                                            @endif
                                         </div>
                                         <button type="submit" class="btn btn-primary">Submit</button>
                                     </form>

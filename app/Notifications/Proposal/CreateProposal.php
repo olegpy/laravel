@@ -5,13 +5,14 @@ namespace App\Notifications\Proposal;
 use App\Mail\Proposal\CreateProposalMail;
 use App\Models\Proposal;
 use Illuminate\Bus\Queueable;
+use Illuminate\Foundation\Bus\Dispatchable;
 use Illuminate\Notifications\Notification;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Queue\InteractsWithQueue;
 
 class CreateProposal extends Notification implements ShouldQueue
 {
-    use Queueable, InteractsWithQueue;
+    use Dispatchable, Queueable, InteractsWithQueue;
 
     /** @var string */
     public $emailAdmin;
