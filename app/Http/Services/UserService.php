@@ -11,6 +11,9 @@ class UserService implements UserServiceContract
     /** @var UserRepositoryContract */
     protected $userRepository;
 
+    /**
+     * @param UserRepositoryContract $userRepository
+     */
     public function __construct(UserRepositoryContract $userRepository)
     {
         $this->userRepository = $userRepository;

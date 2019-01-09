@@ -48,4 +48,15 @@ class ProposalTest extends TestCase
         return $response;
     }
 
+    public function testTryToCreateProposalWithEmptyTitle()
+    {
+        Session::start();
+        $response = $this->actingAs($this->user)->from(route(ConstantClass::PLATFORM_ROUTE_HOME))->post(route(ConstantClass::PLATFORM_ROUTE_CREATE_PROPOSAL), [
+            '_token' => Session::token(),
+            'message' => $this->faker->text,
+        ]);
+
+        $response->assertRedirect(route(ConstantClass::PLATFORM_ROUTE_HOME));
+        $response->assertSessionHasErrors('title');
+    }
 }
