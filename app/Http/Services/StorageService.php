@@ -27,7 +27,6 @@ class StorageService implements StorageServiceContract
         return Storage::disk('public')->download($url);
     }
 
-
     /**
      * @param string $nameParameter
      * @param array $storageParameters

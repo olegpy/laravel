@@ -11,10 +11,6 @@
 |
 */
 
-//Route::get('/', function () {
-//    return view('welcome');
-//});
-
 Auth::routes();
 
 Route::group(['as' => 'proposals.', 'middleware' => 'auth'], function () {
@@ -22,10 +18,4 @@ Route::group(['as' => 'proposals.', 'middleware' => 'auth'], function () {
     Route::post('/', 'ProposalController@store')->name('store')->middleware('can:create, App\Models\Proposal');
     Route::put('{proposal}', 'ProposalController@update')->name('update')->middleware('can:update,proposal');
     Route::get('{proposal}/download', 'ProposalController@download')->name('download')->middleware('can:download,proposal');
-//    Route::get('', 'UserController@edit')->name('edit')->where('user', "[0-9]+");
-//    Route::put('', 'UserController@update')->name('update')->where('user', "[0-9]+");
-//    Route::put('company', 'UserController@updateCompany')->name('update.company')->where('user', "[0-9]+");
-//    Route::put('image', 'UserController@updateImage')->name('update.image')->where('user', "[0-9]+");
 });
-//Route::group();
-//Route::get('/', 'ProposalController@index')->name('index');
