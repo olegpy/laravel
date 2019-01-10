@@ -23,17 +23,6 @@ class UserTest extends TestCase
         $this->user = factory(User::class)->create();
     }
 
-//    protected function setUp() {
-//        parent::setUp();
-//        $mockServiceInterface = $this->getMockBuilder(UserRepositoryContract::class)->getMock();
-//        $this->app->instance(UserRepositoryContract::class,$mockServiceInterface);
-//    }
-//
-//    public function testPostToRoute() {
-//        $this->post(route('routeToActionInMyController'), $params);
-//    }
-
-
     public function testNotAuthorizeUserRedirectedToLogin()
     {
         $response = $this->get(route(ConstantClass::PLATFORM_ROUTE_HOME));
