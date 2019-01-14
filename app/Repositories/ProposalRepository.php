@@ -33,6 +33,6 @@ class ProposalRepository extends Repository implements ProposalRepositoryContrac
      */
     public function list(array $data): LengthAwarePaginator
     {
-        return $this->model->orderBy('readed', 'asc')->with($data)->paginate(Proposal::PAGINATE_PAGE_COUNT);
+        return $this->model->orderBy('readed', 'asc')->orderByDesc('created_at')->with($data)->paginate(Proposal::PAGINATE_PAGE_COUNT);
     }
 }

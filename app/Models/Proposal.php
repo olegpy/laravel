@@ -37,15 +37,4 @@ class Proposal extends Model
     {
         return $this->belongsTo(User::class);
     }
-
-//    /**
-//     * Route notifications for the mail channel.
-//     *
-//     * @param  \Illuminate\Notifications\Notification  $notification
-//     * @return string
-//     */
-//    public function routeNotificationForMail($notification): string
-//    {
-//        return $notification->emailAdmin;
-//    }
 }
